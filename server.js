@@ -5,6 +5,9 @@ const Good = require('good');
 const mysql = require('mysql');
 const server = new Hapi.Server();
 const Auth = require('./auth');
+const Path = require('path');
+const Hoek = require('hoek');
+const Joi = require('joi');
 
 server.connection({ 
     host: 'localhost', 
@@ -27,6 +30,7 @@ dbConnection.connect(function(err) {
 // console.log(dbConnection); return;
 
 server.bind({db: dbConnection});
+server.bind({joi: Joi});
 
 // Add the route
 /*
@@ -59,7 +63,6 @@ server.register(require('inert'), (err) => {
     if (err) {
         throw err;
     }
-
     server.route(require('./routes'));
 });
 
@@ -72,6 +75,19 @@ server.start((err) => {
     console.log('Server running at:', server.info.uri);
 });
 */
+
+server.register(require('vision'), (err) => {
+    Hoek.assert(!err, err);
+    server.views({
+        engines: {
+            html: require('handlebars')
+        },
+        relativeTo: __dirname,
+        path: 'templates',
+        layout: true,
+        layoutPath: './templates/layout'
+    });
+});
 
 server.register({
     register: Good,
