@@ -59,10 +59,12 @@ module.exports = [{
     method: 'POST',
     path: '/form',
     handler: function(request, reply) {
-        // console.log(this.joi);
-        return;
-        console.log(request.payload);
-        console.log('posted value');
+        if (request.payload.username) {
+            reply(request.payload.username);
+        } else {
+            reply('time unknown');
+        }
+
     },
     config: {
         validate: {
@@ -70,6 +72,11 @@ module.exports = [{
                 username: Joi.string().min(5).required() // , 
                 // id: Joi.number().min(100).max(999999999),
                 // uploadFile: Joi.object().optional()
+            },
+            failAction: function (request, reply, source, error) {
+                return reply.view('form', {title: 'Sample form', error: error, postValues: request.payload});
+                // error.output.payload.message = 'custom';
+                // return reply(error).code(400);
             }
         }
     }

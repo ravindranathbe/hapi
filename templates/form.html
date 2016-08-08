@@ -1,7 +1,11 @@
 <h3>{{{title}}}</h3>
+
+{{{error}}}
+
 <form name="formUser" method="post" action="/form">
-<p><label>Username: <input type="text" name="username" /></label></p>
-<p><label>Firstname: <input type="text" name="firstname" /></label></p>
-<p><label>Lastname: <input type="text" name="lastname" /></label></p>
+<p><label>Username: <input type="text" name="username" value="{{{postValues.username}}}" /></label></p>
+<p><label>Firstname: <input type="text" name="firstname" value="{{{postValues.firstname}}}" /></label></p>
+<p><label>Lastname: <input type="text" name="lastname" value="{{{postValues.lastname}}}" /></label></p>
 <p><input type="submit" name="formSubmit" value="Save" /></p>
 </form>
+
