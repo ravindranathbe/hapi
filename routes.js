@@ -87,5 +87,15 @@ module.exports = [{
             }
         }
     }
+},
+{
+    method: 'GET',
+    path: '/auth',
+    config: {
+        auth: 'simple'
+    },
+    handler: function(request, reply) {
+        return reply('debug');
+    }
 }
 ];
