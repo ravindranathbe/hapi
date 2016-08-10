@@ -69,9 +69,10 @@ module.exports = [{
     config: {
         validate: {
             payload: { 
-                username: Joi.string().min(5).required() // , 
-                // id: Joi.number().min(100).max(999999999),
-                // uploadFile: Joi.object().optional()
+                username: Joi.string().min(5).required(),
+                firstname: Joi.string(),
+                lastname: Joi.string(),
+                formSubmit: Joi.string()
             },
             failAction: function (request, reply, source, error) {
                 return reply.view('form', {title: 'Sample form', error: error, postValues: request.payload});
