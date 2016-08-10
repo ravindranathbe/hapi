@@ -31,7 +31,7 @@ module.exports = [{
     method: 'GET',
     path: '/json',
     config: {
-        auth: 'jsonAuth'
+        // auth: 'jsonAuth'
     },
     handler: function (request, reply) {
         reply({ hello: 'World' });
