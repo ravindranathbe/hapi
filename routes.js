@@ -59,11 +59,17 @@ module.exports = [{
     method: 'POST',
     path: '/form',
     handler: function(request, reply) {
-        if (request.payload.username) {
-            reply(request.payload.username);
-        } else {
-            reply('time unknown');
-        }
+        var username = request.payload.username;
+        var firstname = request.payload.firstname;
+        var lastname = request.payload.lastname;
+        var valObj = {username: username, firstname: firstname, lastname: lastname};
+
+        var qry = this.db.query('INSERT INTO users SET ?', valObj, function(err, result) {
+            console.log(err);
+            // console.log(result);
+        });
+        console.log('QUERY::\n' + qry.sql);
+        return reply('debug');
 
     },
     config: {

@@ -29,8 +29,8 @@ dbConnection.connect(function(err) {
 });
 // console.log(dbConnection); return;
 
-server.bind({db: dbConnection});
-server.bind({joi: Joi});
+server.bind({db: dbConnection, joi: Joi});
+// server.bind({joi: Joi});
 
 // Add the route
 /*
