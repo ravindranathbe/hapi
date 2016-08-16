@@ -23,6 +23,7 @@ const users = {
 
 server.connection({ 
     host: 'localhost', 
+    // host: '172.14.10.65',
     port: 3000 
 });
 
@@ -84,6 +85,17 @@ const validate = function (request, username, password, callback) {
 server.register(require('hapi-auth-basic'), (err) => {
     if (err) { throw err; }
     server.auth.strategy('simple', 'basic', { validateFunc: validate });
+});
+
+server.register(require('hapi-auth-cookie'), function(err) {
+    if (err) { throw err; }
+    server.auth.strategy('session', 'cookie', {
+        password: 'secrethash',
+        cookie: 'session', // Cookie name
+        redirectTo: '/login', // Let's handle our own redirections
+        isSecure: false, // required for non-https applications
+        ttl: 2 * 60 * 1000 // Set session to 2 mins
+    });
 });
 
 server.register(require('inert'), (err) => {

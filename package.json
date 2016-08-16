@@ -19,6 +19,7 @@
     "handlebars": "^4.0.5",
     "hapi-auth-basic": "^4.2.0",
     "hapi-auth-bearer-token": "^4.2.0",
+    "hapi-auth-cookie": "^6.1.1",
     "hoek": "^4.0.2",
     "inert": "^4.0.1",
     "joi": "^9.0.4",

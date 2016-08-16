@@ -40,6 +40,9 @@ module.exports = [{
 {
     method: 'GET',
     path: '/home',
+    config: {
+        auth: 'session'
+    },
     /*
     handler: function (request, reply) {
         console.log(Pages.home);
@@ -47,6 +50,22 @@ module.exports = [{
     }
     */
     handler: Pages.home
+},
+{
+    method: 'GET',
+    path: '/login',
+    handler: function(request, reply) {
+        reply.view('login-form', {title: 'Login form'});
+    }
+},
+{
+    method: 'POST',
+    path: '/login',
+    handler: function(request, reply) {
+        var username = request.payload.username;
+        var password = request.payload.password;
+        reply.view('login-form', {title: 'Login form'});
+    }
 },
 {
     method: 'GET',
