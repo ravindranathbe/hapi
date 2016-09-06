@@ -89,7 +89,7 @@ server.register(require('hapi-auth-basic'), (err) => {
 
 server.register(require('hapi-auth-cookie'), function(err) {
     if (err) { throw err; }
-    server.auth.strategy('session', 'cookie', {
+    server.auth.strategy('session', 'cookie', false, {
         password: 'secrethash',
         cookie: 'session', // Cookie name
         redirectTo: '/login', // Let's handle our own redirections

@@ -3,7 +3,8 @@
 const Pages = require('./handlers/pages');
 const Joi = require('Joi');
 
-module.exports = [{
+module.exports = [
+{
     method: 'GET',
     path: '/',
     handler: function (request, reply) {
@@ -55,7 +56,7 @@ module.exports = [{
     method: 'GET',
     path: '/login',
     handler: function(request, reply) {
-        reply.view('login-form', {title: 'Login form'});
+        return reply.view('login-form', {title: 'Login form'});
     }
 },
 {
